@@ -1,8 +1,16 @@
 ﻿var fs = require('fs');
+var fileName = 'package.json';
 
-var contents = fs.readFileSync('package.json').toString();
+console.log('reading \''+ fileName+'\' in sync mode');
+var contents = fs.readFileSync(fileName).toString();
 console.log(contents);
 
-fs.readFile('package.json', function (err, buf) {
-    console.log(buf.toString());
-});
+console.log('reading \'' + fileName + '\' in async mode');
+fs.readFile(fileName,
+    function (err, data)
+    {
+        if (err)
+            throw err;
+        console.log(data.toString());
+    }
+);
